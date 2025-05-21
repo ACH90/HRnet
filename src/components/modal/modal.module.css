@@ -4,8 +4,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  right: 0;
+  bottom: 0;
   background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
@@ -14,25 +14,33 @@
 }
 
 .content {
-  background-color: white;
+  background: white;
   padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  max-width: 400px;
-  width: 100%;
   position: relative;
+  max-width: 600px;
+  width: 100%;
+  border-radius: 8px;
+  outline: none;
 }
 
 .closeButton {
-  margin-top: 1rem;
-  background-color: #004085;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: 2px solid #002752; /* ✅ Définit la bordure complète */
+  border-radius: 50%;
+  font-size: 1.5rem;
   cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .closeButton:hover {
   background-color: #002752;
+  color: white;
+  border-radius: 50%;
 }

@@ -12,7 +12,13 @@ export default function EmployeeList() {
           <tr>
             <th>First Name</th>
             <th>Last Name</th>
-            {/* autres colonnes */}
+            <th>Date of Birth</th>
+            <th>Start Date</th>
+            <th>Street</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip Code</th>
+            <th>Department</th>
           </tr>
         </thead>
         <tbody>
@@ -20,7 +26,13 @@ export default function EmployeeList() {
             <tr key={index}>
               <td>{emp.firstName}</td>
               <td>{emp.lastName}</td>
-              {/* autres données */}
+              <td>{emp.dateOfBirth}</td>
+              <td>{emp.startDate}</td>
+              <td>{emp.street}</td>
+              <td>{emp.city}</td>
+              <td>{emp.state}</td>
+              <td>{emp.zipCode}</td>
+              <td>{emp.department}</td>
             </tr>
           ))}
         </tbody>
