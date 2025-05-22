@@ -7,6 +7,10 @@ import { TextField, MenuItem } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 // import dayjs from "dayjs";
 
+import Dropdown from "../../components/Dropdown/Dropdown";
+import usStates from "../../utils/usStates";
+import departments from "../../utils/departments";
+
 export default function CreateEmployee() {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -50,6 +54,9 @@ export default function CreateEmployee() {
       zipCode: "",
       department: "Sales",
     });
+  }
+  function handleDropdownChange(field, value) {
+    setFormData((prev) => ({ ...prev, [field]: value }));
   }
 
   return (
@@ -117,11 +124,12 @@ export default function CreateEmployee() {
             />
 
             <label htmlFor="state">State</label>
-            <input
+            <Dropdown
               id="state"
-              type="text"
+              // label="State"
               value={formData.state}
-              onChange={handleChange}
+              onChange={handleDropdownChange}
+              options={usStates}
             />
 
             <label htmlFor="zipCode">Zip Code</label>
@@ -134,7 +142,14 @@ export default function CreateEmployee() {
           </fieldset>
 
           <label htmlFor="department">Department</label>
-          <select
+          <Dropdown
+            id="department"
+            // label="Department"
+            value={formData.department}
+            onChange={handleDropdownChange}
+            options={departments}
+          />
+          {/* <select
             id="department"
             value={formData.department}
             onChange={handleChange}
@@ -144,7 +159,7 @@ export default function CreateEmployee() {
             <option>Engineering</option>
             <option>Human Resources</option>
             <option>Legal</option>
-          </select>
+          </select> */}
         </form>
 
         <button onClick={handleSave}>Save</button>
