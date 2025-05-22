@@ -19,7 +19,7 @@ export default function CreateEmployee() {
     startDate: null,
     street: "",
     city: "",
-    state: "",
+    state: "Alabama",
     zipCode: "",
     department: "Sales",
   });
@@ -149,17 +149,6 @@ export default function CreateEmployee() {
             onChange={handleDropdownChange}
             options={departments}
           />
-          {/* <select
-            id="department"
-            value={formData.department}
-            onChange={handleChange}
-          >
-            <option>Sales</option>
-            <option>Marketing</option>
-            <option>Engineering</option>
-            <option>Human Resources</option>
-            <option>Legal</option>
-          </select> */}
         </form>
 
         <button onClick={handleSave}>Save</button>
