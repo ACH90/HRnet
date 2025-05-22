@@ -3,13 +3,16 @@ import { useDispatch } from "react-redux";
 import { addEmployee } from "../../store/employeeSlice";
 import { Link } from "react-router-dom";
 import Modal from "../../components/modal/modal";
+import { TextField, MenuItem } from "@mui/material";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+// import dayjs from "dayjs";
 
 export default function CreateEmployee() {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
-    dateOfBirth: "",
-    startDate: "",
+    dateOfBirth: null, // dayjs object
+    startDate: null,
     street: "",
     city: "",
     state: "",
@@ -25,14 +28,22 @@ export default function CreateEmployee() {
   }
 
   function handleSave() {
-    dispatch(addEmployee(formData));
-    console.log("Save cliqué", formData);
+    // Convertir les dates en string (format court) avant d’envoyer dans Redux
+    const payload = {
+      ...formData,
+      dateOfBirth: formData.dateOfBirth?.format("DD/MM/YYYY") || "",
+      startDate: formData.startDate?.format("DD/MM/YYYY") || "",
+    };
+
+    dispatch(addEmployee(payload));
     setShowConfirmation(true);
+
+    // Réinitialiser le formulaire
     setFormData({
       firstName: "",
       lastName: "",
-      dateOfBirth: "",
-      startDate: "",
+      dateOfBirth: null,
+      startDate: null,
       street: "",
       city: "",
       state: "",
@@ -50,7 +61,7 @@ export default function CreateEmployee() {
         <Link to="/employee-list">View Current Employees</Link>
         <h2>Create Employee</h2>
         <form id="create-employee" onSubmit={(e) => e.preventDefault()}>
-          <label htmlFor="first-name">First Name</label>
+          <label htmlFor="firstName">First Name</label>
           <input
             type="text"
             id="firstName"
@@ -58,7 +69,7 @@ export default function CreateEmployee() {
             onChange={handleChange}
           />
 
-          <label htmlFor="last-name">Last Name</label>
+          <label htmlFor="lastName">Last Name</label>
           <input
             type="text"
             id="lastName"
@@ -66,20 +77,24 @@ export default function CreateEmployee() {
             onChange={handleChange}
           />
 
-          <label htmlFor="date-of-birth">Date of Birth</label>
-          <input
-            type="text"
-            id="dateOfBirth"
+          <label>Date of Birth</label>
+          <DatePicker
             value={formData.dateOfBirth}
-            onChange={handleChange}
+            onChange={(newValue) =>
+              setFormData({ ...formData, dateOfBirth: newValue })
+            }
+            format="DD/MM/YYYY"
+            slotProps={{ textField: { fullWidth: true } }}
           />
 
-          <label htmlFor="start-date">Start Date</label>
-          <input
-            type="text"
-            id="startDate"
+          <label>Start Date</label>
+          <DatePicker
             value={formData.startDate}
-            onChange={handleChange}
+            onChange={(newValue) =>
+              setFormData({ ...formData, startDate: newValue })
+            }
+            format="DD/MM/YYYY"
+            slotProps={{ textField: { fullWidth: true } }}
           />
 
           <fieldset className="address">
@@ -109,7 +124,7 @@ export default function CreateEmployee() {
               onChange={handleChange}
             />
 
-            <label htmlFor="zip-code">Zip Code</label>
+            <label htmlFor="zipCode">Zip Code</label>
             <input
               id="zipCode"
               type="number"

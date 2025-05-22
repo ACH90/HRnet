@@ -26,3 +26,6 @@ install :
 npm install @mui/x-data-grid @mui/material @emotion/react @emotion/styled
 
 
+MUI Date Picker
+
+npm install @mui/x-date-pickers @mui/lab dayjs
