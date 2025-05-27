@@ -28,7 +28,7 @@
   top: 1rem;
   right: 1rem;
   background: none;
-  border: 2px solid #002752; /* ✅ Définit la bordure complète */
+  border: 2px solid #002752; 
   border-radius: 50%;
   font-size: 1.5rem;
   cursor: pointer;

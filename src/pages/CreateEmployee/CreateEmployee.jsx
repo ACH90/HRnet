@@ -1,13 +1,21 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addEmployee } from "../../store/employeeSlice";
 import { Link } from "react-router-dom";
-import Modal from "../../components/modal/modal";
-import { TextField, MenuItem } from "@mui/material";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-// import dayjs from "dayjs";
+import { useDispatch } from "react-redux";
 
+//Import reducers
+import { addEmployee } from "../../store/employeeSlice";
+
+//Import components
+// import Modal from "../../components/modal/modal";
+//-------------
+import Modal from "@ach90/hrnet-modal";
+import "@ach90/hrnet-modal/style.css";
+
+//-------------
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import Dropdown from "../../components/Dropdown/Dropdown";
+
+//import Dropdown Selection
 import usStates from "../../utils/usStates";
 import departments from "../../utils/departments";
 
@@ -50,7 +58,7 @@ export default function CreateEmployee() {
       startDate: null,
       street: "",
       city: "",
-      state: "",
+      state: "Alabama",
       zipCode: "",
       department: "Sales",
     });

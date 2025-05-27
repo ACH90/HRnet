@@ -1,4 +1,3 @@
-// utils/usStates.js
 const usStates = [
   "Alabama",
   "Alaska",
