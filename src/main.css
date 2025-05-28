@@ -6,26 +6,33 @@
     font-family: "Roboto", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.title {
+/* .title {
     display: flex;
     align-items: center;
     justify-content: center;
-}
+} */
 
 
-.container {
+/* .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
+} */
 
 label {
     display: block;
     margin-top: 1rem;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
 }
 
-.address {
+/* .address {
     margin-top: 10px;
-}
+} */
+
+/* *{
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+} */
