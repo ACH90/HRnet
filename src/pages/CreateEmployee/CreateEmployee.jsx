@@ -1,72 +1,27 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useCreateEmployeeForm } from "./useCreateEmployeeForm";
 import styles from "./CreateEmployee.module.css";
-
-//Import reducers
-import { addEmployee } from "../../store/employeeSlice";
-
+import { Link } from "react-router-dom";
 //-------------
 import Modal from "@ach90/hrnet-modal";
 import "@ach90/hrnet-modal/style.css";
-
 //-------------
 import DatePicker from "../../components/DatePicker/DatePicker";
 import Dropdown from "../../components/Dropdown/Dropdown";
-
-//import Dropdown Selection
-import usStates from "../../utils/usStates";
-import departments from "../../utils/departments";
-
 import Input from "../../components/Input/Input";
+//import Dropdowns Selection
+import usStates from "../../data/usStates";
+import departments from "../../data/departments";
 
 export default function CreateEmployee() {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    dateOfBirth: null, // dayjs object
-    startDate: null,
-    street: "",
-    city: "",
-    state: "Alabama",
-    zipCode: "",
-    department: "Sales",
-  });
-
-  const dispatch = useDispatch();
-  const [showConfirmation, setShowConfirmation] = useState(false);
-
-  function handleChange(e) {
-    setFormData({ ...formData, [e.target.id]: e.target.value });
-  }
-
-  function handleSave() {
-    // Convertir les dates en string (format court) avant d’envoyer dans Redux
-    const payload = {
-      ...formData,
-      dateOfBirth: formData.dateOfBirth?.format("DD/MM/YYYY") || "",
-      startDate: formData.startDate?.format("DD/MM/YYYY") || "",
-    };
-
-    dispatch(addEmployee(payload));
-    setShowConfirmation(true);
-
-    // Réinitialiser le formulaire
-    setFormData({
-      firstName: "",
-      lastName: "",
-      dateOfBirth: null,
-      startDate: null,
-      street: "",
-      city: "",
-      state: "Alabama",
-      zipCode: "",
-      department: "Sales",
-    });
-  }
-  function handleDropdownChange(field, value) {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-  }
+  const {
+    formData,
+    handleChange,
+    handleDropdownChange,
+    handleDateChange,
+    handleSave,
+    showConfirmation,
+    setShowConfirmation,
+  } = useCreateEmployeeForm();
 
   return (
     <main>
@@ -81,7 +36,7 @@ export default function CreateEmployee() {
       </header>
       <div className={styles.container}>
         <div className={styles.formContainer}>
-          <form id="create-employee" onSubmit={(e) => e.preventDefault()}>
+          <form id="create-employee" onSubmit={handleSave}>
             <div className={styles.leftSide}>
               <div className={styles.Input}>
                 <label htmlFor="firstName">First Name</label>
@@ -108,7 +63,7 @@ export default function CreateEmployee() {
                   value={formData.dateOfBirth}
                   id="dateOfBirth"
                   onChange={(newValue) =>
-                    setFormData({ ...formData, dateOfBirth: newValue })
+                    handleDateChange("dateOfBirth", newValue)
                   }
                   format="DD/MM/YYYY"
                   slotProps={{ textField: { fullWidth: true } }}
@@ -120,7 +75,7 @@ export default function CreateEmployee() {
                   id="startDate"
                   value={formData.startDate}
                   onChange={(newValue) =>
-                    setFormData({ ...formData, startDate: newValue })
+                    handleDateChange("startDate", newValue)
                   }
                   format="DD/MM/YYYY"
                   slotProps={{ textField: { fullWidth: true } }}
@@ -176,7 +131,11 @@ export default function CreateEmployee() {
           </form>
         </div>
 
-        <button className={styles.saveButton} onClick={handleSave}>
+        <button
+          className={styles.saveButton}
+          type="submit"
+          form="create-employee"
+        >
           Save
         </button>
       </div>
