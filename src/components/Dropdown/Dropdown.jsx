@@ -1,23 +1,37 @@
-// components/Dropdown.jsx
-import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import * as Select from "@radix-ui/react-select";
+// import { CheckIcon, ChevronDownIcon } from "@radix-ui/react-icons";
+import styles from "./dropdown.module.css";
 
-export default function Dropdown({ id, label, value, onChange, options }) {
+export default function Dropdown({ id, value, onChange, options }) {
   return (
-    <FormControl fullWidth margin="normal">
-      <InputLabel id={`${id}-label`}>{label}</InputLabel>
-      <Select
-        labelId={`${id}-label`}
+    <Select.Root value={value} onValueChange={(val) => onChange(id, val)}>
+      <Select.Trigger
+        className={styles["select-trigger"]}
+        aria-label={id}
         id={id}
-        value={value}
-        label={label}
-        onChange={(e) => onChange(id, e.target.value)}
       >
-        {options.map((option) => (
-          <MenuItem key={option} value={option}>
-            {option}
-          </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
+        <Select.Value>
+          <div className={styles["select-value"]}>{value}</div>
+        </Select.Value>
+      </Select.Trigger>
+      <Select.Portal>
+        <Select.Content className={styles["select-content"]}>
+          <Select.Viewport>
+            {options.map((opt) => (
+              <Select.Item
+                key={opt}
+                value={opt}
+                className={styles["select-item"]}
+              >
+                <Select.ItemText>{opt}</Select.ItemText>
+                <Select.ItemIndicator className={styles["select-check"]}>
+                  {/* <CheckIcon /> */}
+                </Select.ItemIndicator>
+              </Select.Item>
+            ))}
+          </Select.Viewport>
+        </Select.Content>
+      </Select.Portal>
+    </Select.Root>
   );
 }

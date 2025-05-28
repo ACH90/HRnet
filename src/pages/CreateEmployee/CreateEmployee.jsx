@@ -11,12 +11,14 @@ import Modal from "@ach90/hrnet-modal";
 import "@ach90/hrnet-modal/style.css";
 
 //-------------
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import DatePicker from "../../components/DatePicker/DatePicker";
 import Dropdown from "../../components/Dropdown/Dropdown";
 
 //import Dropdown Selection
 import usStates from "../../utils/usStates";
 import departments from "../../utils/departments";
+
+import Input from "../../components/Input/Input";
 
 export default function CreateEmployee() {
   const [formData, setFormData] = useState({
@@ -72,62 +74,74 @@ export default function CreateEmployee() {
         <div className="title">
           <h1>HRnet</h1>
         </div>
-        <Link to="/employee-list">View Current Employees</Link>
         <h2>Create Employee</h2>
+        <Link to="/employee-list" className={styles.link}>
+          View Current Employees
+        </Link>
       </header>
       <div className={styles.container}>
         <div className={styles.formContainer}>
           <form id="create-employee" onSubmit={(e) => e.preventDefault()}>
             <div className={styles.leftSide}>
-              <label htmlFor="firstName">First Name</label>
-              <input
-                type="text"
-                id="firstName"
-                value={formData.firstName}
-                onChange={handleChange}
-              />
+              <div className={styles.Input}>
+                <label htmlFor="firstName">First Name</label>
+                <Input
+                  type="text"
+                  id="firstName"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                />
+              </div>
 
-              <label htmlFor="lastName">Last Name</label>
-              <input
-                type="text"
-                id="lastName"
-                value={formData.lastName}
-                onChange={handleChange}
-              />
-
-              <label>Date of Birth</label>
-              <DatePicker
-                value={formData.dateOfBirth}
-                onChange={(newValue) =>
-                  setFormData({ ...formData, dateOfBirth: newValue })
-                }
-                format="DD/MM/YYYY"
-                slotProps={{ textField: { fullWidth: true } }}
-              />
-
-              <label>Start Date</label>
-              <DatePicker
-                value={formData.startDate}
-                onChange={(newValue) =>
-                  setFormData({ ...formData, startDate: newValue })
-                }
-                format="DD/MM/YYYY"
-                slotProps={{ textField: { fullWidth: true } }}
-              />
-              <label htmlFor="department">Department</label>
-              <Dropdown
-                id="department"
-                value={formData.department}
-                onChange={handleDropdownChange}
-                options={departments}
-              />
+              <div className={styles.Inputs}>
+                <label htmlFor="lastName">Last Name</label>
+                <Input
+                  type="text"
+                  id="lastName"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className={styles.Inputs}>
+                <label htmlFor="dateOfBirth">Date of Birth</label>
+                <DatePicker
+                  value={formData.dateOfBirth}
+                  id="dateOfBirth"
+                  onChange={(newValue) =>
+                    setFormData({ ...formData, dateOfBirth: newValue })
+                  }
+                  format="DD/MM/YYYY"
+                  slotProps={{ textField: { fullWidth: true } }}
+                />
+              </div>
+              <div className={styles.Inputs}>
+                <label htmlFor="startDate">Start Date</label>
+                <DatePicker
+                  id="startDate"
+                  value={formData.startDate}
+                  onChange={(newValue) =>
+                    setFormData({ ...formData, startDate: newValue })
+                  }
+                  format="DD/MM/YYYY"
+                  slotProps={{ textField: { fullWidth: true } }}
+                />
+              </div>
+              <div>
+                <label htmlFor="department">Department</label>
+                <Dropdown
+                  id="department"
+                  value={formData.department}
+                  onChange={handleDropdownChange}
+                  options={departments}
+                />
+              </div>
             </div>
             <div className={styles.rightSide}>
-              <fieldset className="address">
+              <fieldset className={styles.address}>
                 <legend>Address</legend>
 
                 <label htmlFor="street">Street</label>
-                <input
+                <Input
                   id="street"
                   type="text"
                   value={formData.street}
@@ -135,7 +149,7 @@ export default function CreateEmployee() {
                 />
 
                 <label htmlFor="city">City</label>
-                <input
+                <Input
                   id="city"
                   type="text"
                   value={formData.city}
@@ -151,7 +165,7 @@ export default function CreateEmployee() {
                 />
 
                 <label htmlFor="zipCode">Zip Code</label>
-                <input
+                <Input
                   id="zipCode"
                   type="number"
                   value={formData.zipCode}
@@ -162,7 +176,9 @@ export default function CreateEmployee() {
           </form>
         </div>
 
-        <button onClick={handleSave}>Save</button>
+        <button className={styles.saveButton} onClick={handleSave}>
+          Save
+        </button>
       </div>
 
       {showConfirmation && (

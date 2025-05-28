@@ -4,7 +4,10 @@
     align-items: center;
     border: 1px solid black;
     border-radius: 10px;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 800px;
+    background-color: #fafafa;
 }
 .formContainer {
     display: flex;
@@ -32,8 +35,8 @@ main {
     width: 50%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    /* align-items: center;
+    justify-content: center; */
     padding: 20px;
 }
 
@@ -41,16 +44,81 @@ main {
     width: 50%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    /* align-items: center;
+    justify-content: center; */
     padding: 20px;
 }
 
 form div input {
     width: 100%;
     height: 30px;
-    margin: 10px;
     border-radius: 10px;
     border: 1px solid black;
     font-size: 16px
+}
+
+.address {
+    margin-top: 10px;
+    width: 80%;
+    padding: 30px;
+
+}
+
+header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+#state {
+    width: 100px;
+    height: 30px;
+    margin: 10px;
+    border-radius: 10px;
+    border: 1px solid black;
+    font-size: 16px;
+    padding: 5px 10px;
+}
+
+
+.saveButton {
+     /* background: linear-gradient(135deg, #fcfcfd, #ccd9f1); */
+     background-color: var(--background-color);
+  color: black;
+  padding: 10px 34px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.saveButton:hover {
+  background: linear-gradient(135deg, #e9eaee, #d0d9f0);
+  /* transform: translateY(-1px); */
+}
+
+
+.link {
+  color: #1a73e8; /* couleur du lien normal */
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.link:visited {
+  color: #1a73e8; /* même couleur que le lien normal */
+}
+
+.link:hover {
+  text-decoration: underline; /* soulignement au survol du lien */
 }

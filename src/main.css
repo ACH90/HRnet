@@ -36,3 +36,6 @@ label {
     align-items: center;
     justify-content: center;
 } */
+ body {
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf3 100%);
+}
