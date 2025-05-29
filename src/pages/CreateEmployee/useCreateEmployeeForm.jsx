@@ -32,6 +32,21 @@ export function useCreateEmployeeForm() {
 
   function handleSave(e) {
     e.preventDefault();
+    const isFormValid =
+      formData.firstName.trim() !== "" &&
+      formData.lastName.trim() !== "" &&
+      formData.street.trim() !== "" &&
+      formData.city.trim() !== "" &&
+      formData.zipCode.trim() !== "" &&
+      formData.state.trim() !== "" &&
+      formData.department.trim() !== "" &&
+      formData.dateOfBirth?.isValid?.() &&
+      formData.startDate?.isValid?.();
+
+    if (!isFormValid) {
+      alert("Merci de remplir tous les champs !");
+      return;
+    }
     // Convertir les dates en string (format court) avant d’envoyer dans Redux
     const payload = {
       ...formData,

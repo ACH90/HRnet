@@ -8,7 +8,7 @@ export default function Input({ id, value, onChange, type = "text", ...rest }) {
       type={type}
       value={value}
       onChange={onChange}
-      className={styles.input}
+      className={`${styles.input} ${styles["input-with-padding"]}`}
       {...rest}
     />
   );
