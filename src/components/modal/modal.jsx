@@ -12,7 +12,6 @@ export default function Modal({ isOpen, onClose, children }) {
     } else {
       document.body.style.overflow = "";
     }
-
     return () => {
       document.body.style.overflow = "";
     };
@@ -76,7 +75,7 @@ export default function Modal({ isOpen, onClose, children }) {
       className={styles.overlay}
       role="dialog"
       aria-modal="true"
-      onClick={onClose}
+      onClick={onClose} //Fermeture de la modale si on clique en dehors
     >
       <div
         className={styles.content}

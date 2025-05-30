@@ -1,5 +1,4 @@
 import * as Select from "@radix-ui/react-select";
-// import { CheckIcon, ChevronDownIcon } from "@radix-ui/react-icons";
 import styles from "./dropdown.module.css";
 
 export default function Dropdown({ id, value, onChange, options }) {
