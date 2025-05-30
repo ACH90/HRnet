@@ -48,14 +48,16 @@ export default function Modal({ isOpen, onClose, children }) {
       if (e.key !== "Tab") return;
 
       if (e.shiftKey) {
+        // Si l'utilisateur fait Shift + Tab (retour arrière)
         if (document.activeElement === first) {
-          e.preventDefault();
-          last.focus();
+          e.preventDefault(); // Empêche le comportement normal (sortir de la modale)
+          last.focus(); // Renvoie le focus sur le dernier élément
         }
       } else {
+        // Si l'utilisateur fait Tab normal (vers l'avant)
         if (document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
+          e.preventDefault(); // Empêche de sortir de la modale
+          first.focus(); // Renvoie le focus sur le premier élément
         }
       }
     }
